@@ -1,5 +1,4 @@
-import { json } from "express";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function GetUrlParams() {
   const [value, setValue] = useState("");
@@ -51,6 +50,7 @@ export default function GetUrlParams() {
       <div>
         <b>Result:</b> {JSON.stringify(objResult)}
       </div>
+      <a href="/objectLiteral">ObjectLiteral</a>
     </div>
   );
 }
