@@ -50,6 +50,7 @@ export default function GetUrlParams() {
       <div>
         <b>Result:</b> {JSON.stringify(objResult)}
       </div>
+      <br />
       <a href="/objectLiteral">ObjectLiteral</a>
     </div>
   );

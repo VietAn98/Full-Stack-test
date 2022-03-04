@@ -35,6 +35,8 @@ export default function ObjectLiteral() {
       <div>
         <b>Result:</b> {objResult}
       </div>
+      <br />
+      <a href="/">GetUrlParams</a>
     </div>
   );
 }
