@@ -1,33 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "../../services/api.json";
 import { DataType } from "../../type";
 
 export default function ObjectLiteral() {
   const [value, setValue] = useState(JSON.stringify(data));
-  const [objResult, setObjResult] = useState({});
+  const [objResult, setObjResult] = useState("");
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    console.log(objectLiteral(JSON.parse(value)));
-  };
-  const isDataType = (obj: DataType) => {
-    return (obj as DataType).id && (obj as DataType).count && (obj as DataType).name;
-  };
-
-  const objectLiteral = (target: DataType) => {
-    const source = JSON.parse(value);
-    console.log(isDataType(target));
-
-    // Object.keys(source).map(prop=>{
-    //     if()
-    // });
+    fetch("http://localhost:9000/fstest/objectLiteral", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: value,
+    })
+      .then((res) => res.text())
+      .then((res) => setObjResult(res));
   };
 
   return (
     <div className="container">
       <h2>objectLiteral</h2>
-      <form id="get_url_form" onSubmit={handleSubmit}>
+      <form id="get_url_form" onSubmit={handleSubmit} method="POST">
         <label htmlFor="textarea">New object:</label> &nbsp;&nbsp;&nbsp;
         <textarea
           name="textarea"
@@ -39,7 +33,7 @@ export default function ObjectLiteral() {
       </form>
       <br />
       <div>
-        <b>Result:</b> {JSON.stringify(objResult)}
+        <b>Result:</b> {objResult}
       </div>
     </div>
   );
